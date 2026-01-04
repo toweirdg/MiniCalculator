@@ -5,22 +5,33 @@
 using namespace std;
 
 int main() {
-    Calculator calc;
-    string input;
+    Calculator calculator;
+    string userInput;
 
-    cout << "Mini Calculator\nType 'exit' to quit\n\n";
+    cout << "Mini Calculator\n";
+    cout << "Type 'exit' to quit\n\n";
 
-    for (;;) {
+    // Main input loop
+    while (true) {
         cout << "> ";
-        getline(cin, input);
+        getline(cin, userInput);
 
-        if (input == "exit") break;
-        if (input.empty()) continue;
+        // Exit condition
+        if (userInput == "exit") {
+            break;
+        }
+
+        // Ignore empty input lines
+        if (userInput.empty()) {
+            continue;
+        }
 
         try {
-            double result = calc.evaluate(input);
+            // Evaluate the expression entered by the user
+            double result = calculator.evaluate(userInput);
             cout << "Result: " << result << "\n";
         } catch (const exception& ex) {
+            // Catch and display errors from invalid expressions
             cout << "Error: " << ex.what() << "\n";
         }
     }
